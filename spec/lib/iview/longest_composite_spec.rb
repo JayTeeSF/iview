@@ -70,5 +70,18 @@ describe Iview::LongestComposite do
         end
       end
     end
+    context "given the books list of words (some of which are fully composite)" do
+      let(:word_list) { %w{ cat banana dog nana walk walker dogwalker } }
+      describe "#word_list" do
+        it "returns the initial list" do
+          expect( lc.word_list ).to eql( word_list )
+        end
+      end
+      describe "#detect" do
+        it "returns the longest fully composite word" do
+          expect( lc.detect ).to eql( "dogwalker" )
+        end
+      end
+    end
   end
 end

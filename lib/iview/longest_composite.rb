@@ -33,7 +33,10 @@ module Iview
     end
 
     def resolve( target_word )
+      # short-circuit with a direct match
+      return true if sorted_words.include?( target_word )
       sorted_words.each do |possible_start_word|
+        # busted: walker matches 'walk' before it gets to "walker"
         if got = remainder( target_word, possible_start_word )
           return true if "" == got
           return resolve( got )
